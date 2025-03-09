@@ -5,6 +5,7 @@
   "engines": {
     "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
   },
+  "packageManager": "pnpm@10.6.1",
   "keywords": [
     "container",
     "dependency injection",
