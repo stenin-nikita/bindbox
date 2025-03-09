@@ -11,7 +11,7 @@ npm i bindbox reflect-metadata
 ## Example
 
 ```ts
-import { Container, createTypeId, defineParamTypes } from 'bindbox';
+import { Container, ParamTypes, createTypeId } from 'bindbox';
 import 'reflect-metadata';
 
 // contracts
@@ -75,8 +75,8 @@ export const TStorage = createTypeId<StorageContract>('Storage');
 export const TLogger = createTypeId<LoggerContract>('Logger');
 
 // annotations
-defineParamTypes(LocalStorage, [TLogger]);
-defineParamTypes(MemoryStorage, [TLogger]);
+ParamTypes.define(LocalStorage, [TLogger]);
+ParamTypes.define(MemoryStorage, [TLogger]);
 
 // usage
 
