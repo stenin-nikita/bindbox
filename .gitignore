@@ -7,3 +7,4 @@ dist/
 lib/
 tmp/
 node_modules/
+coverage/

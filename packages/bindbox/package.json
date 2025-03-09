@@ -30,7 +30,9 @@
     }
   },
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage --coverage.include=src"
   },
   "peerDependencies": {
     "reflect-metadata": "^0.2.2"
