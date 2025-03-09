@@ -1,0 +1,24 @@
+{
+  "name": "@bindbox/bindbox-monorepo",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^18.0.0 || ^20.0.0 || >=22.0.0"
+  },
+  "keywords": [
+    "container",
+    "dependency injection",
+    "dependency inversion",
+    "di",
+    "inversion of control",
+    "ioc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stenin-nikita/bindbox.git"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "5.2.2",
+    "prettier": "3.5.3"
+  }
+}

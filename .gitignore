@@ -1,0 +1,9 @@
+**/.DS_Store
+*-debug.log
+*-error.log
+.idea/
+.nyc_output/
+dist/
+lib/
+tmp/
+node_modules/
