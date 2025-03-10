@@ -1,11 +1,4 @@
-export {
-  createTypeId,
-  optional,
-  withMetadata,
-  defineParamTypes,
-  getParamTypes,
-  ParamTypes,
-} from './reflection';
+export { createTypeId, optional, withMetadata, getParamTypes, ParamTypes } from './reflection';
 export type {
   AbstractType,
   CollectionType,
