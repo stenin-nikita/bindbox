@@ -8,3 +8,4 @@ lib/
 tmp/
 node_modules/
 coverage/
+cache/
