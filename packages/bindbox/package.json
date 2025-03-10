@@ -30,6 +30,7 @@
     }
   },
   "scripts": {
+    "prepare": "pnpm run build",
     "build": "unbuild",
     "test": "vitest",
     "test:coverage": "vitest run --coverage --coverage.include=src"
