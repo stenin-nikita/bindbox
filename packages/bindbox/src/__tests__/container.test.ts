@@ -272,4 +272,67 @@ describe('Container', () => {
       container.get(A);
     }).toThrow();
   });
+
+  describe('isBoundCurrent', () => {
+    it('should be bound to current container', () => {
+      class Foo {}
+
+      const container = new Container();
+
+      container.bind(Foo).toSelf();
+
+      expect(container.isBoundCurrent(Foo)).toBe(true);
+    });
+
+    it('should not be bound to parent container', () => {
+      class Foo {}
+
+      const container = new Container();
+      const childContainer = container.createContainer();
+
+      container.bind(Foo).toSelf();
+
+      expect(container.isBoundCurrent(Foo)).toBe(true);
+      expect(childContainer.isBoundCurrent(Foo)).toBe(false);
+    });
+
+    it('should not be bound in container', () => {
+      class Foo {}
+
+      const container = new Container();
+
+      expect(container.isBoundCurrent(Foo)).toBe(false);
+    });
+  });
+
+  describe('isBound', () => {
+    it('should be bound to current container', () => {
+      class Foo {}
+
+      const container = new Container();
+
+      container.bind(Foo).toSelf();
+
+      expect(container.isBound(Foo)).toBe(true);
+    });
+
+    it('should be bound to parent container', () => {
+      class Foo {}
+
+      const container = new Container();
+      const childContainer = container.createContainer();
+
+      container.bind(Foo).toSelf();
+
+      expect(childContainer.isBound(Foo)).toBe(true);
+    });
+
+    it('should not be bound in container', () => {
+      class Foo {}
+
+      const container = new Container();
+
+      expect(container.isBound(Foo)).toBe(false);
+    });
+  });
 });

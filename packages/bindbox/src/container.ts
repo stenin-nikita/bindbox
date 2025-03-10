@@ -63,6 +63,22 @@ export class Container implements ContainerContract {
     return this.bind(type);
   }
 
+  isBound<T>(type: Type<T>): boolean {
+    if (this.isBoundCurrent(type)) {
+      return true;
+    }
+
+    if (this.#parent) {
+      return this.#parent.isBound(type);
+    }
+
+    return false;
+  }
+
+  isBoundCurrent<T>(type: Type<T>): boolean {
+    return this.#bindings.has(type);
+  }
+
   resolve<T>(request: ResolutionRequestContract<T>): T | T[] {
     if (request.target.isArray()) {
       return this.#resolveCollection(request);
