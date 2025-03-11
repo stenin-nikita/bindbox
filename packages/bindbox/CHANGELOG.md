@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/stenin-nikita/bindbox/compare/v0.0.3...v0.0.4) (2025-03-11)
+
+
+### Bug Fixes
+
+* **bindbox:** add reexport some types ([f267dcf](https://github.com/stenin-nikita/bindbox/commit/f267dcf1f315139aee0406334ca793f3c98e647d))
+
 ## [0.0.3](https://github.com/stenin-nikita/bindbox/compare/v0.0.2...v0.0.3) (2025-03-10)
 
 
