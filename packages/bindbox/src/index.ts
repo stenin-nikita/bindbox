@@ -18,3 +18,9 @@ export { Container } from './container';
 export type { ContainerOptions } from './container';
 export { Scope } from './scope';
 export { ActivationError } from './activation-error';
+export type {
+  FactoryCallback,
+  ScopeCallback,
+  ConditionCallback,
+  ContainerContract,
+} from './contracts';
