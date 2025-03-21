@@ -52,8 +52,11 @@ export class BindingBuilder<T> implements BindingToSyntaxContract<T> {
     return this as unknown as BindingWhenOrInOrOnSyntaxContract<TImplementation>;
   }
 
-  toFactory<TImplementation extends T>(factory: FactoryCallback<TImplementation | T>) {
-    const provider = new FactoryProvider<T>(factory);
+  toFactory<TImplementation extends T, TContext>(
+    factory: FactoryCallback<TImplementation | T, TContext>,
+    thisArg?: TContext,
+  ) {
+    const provider = new FactoryProvider<T, TContext>(factory, thisArg);
 
     this.#binding.setProvider(provider);
 

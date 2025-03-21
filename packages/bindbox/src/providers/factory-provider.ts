@@ -4,11 +4,14 @@ import { ErrorFormatter } from '../error-formatter';
 import { type ParameterType, getParamTypes } from '../reflection';
 import { Target } from '../target';
 
-export class FactoryProvider<T> implements ProviderContract<T> {
-  #factory: FactoryCallback<T>;
+export class FactoryProvider<T, R = any> implements ProviderContract<T> {
+  #factory: FactoryCallback<T, R>;
 
-  constructor(factory: FactoryCallback<T>) {
+  #thisArg?: R;
+
+  constructor(factory: FactoryCallback<T, R>, thisArg?: R) {
     this.#factory = factory;
+    this.#thisArg = thisArg;
   }
 
   create(context: ResolutionContextContract<T>): T {
@@ -25,7 +28,7 @@ export class FactoryProvider<T> implements ProviderContract<T> {
 
     const parameters = this.#resolveValues(context, paramTypes);
 
-    return Reflect.apply(this.#factory, null, parameters);
+    return Reflect.apply(this.#factory, this.#thisArg, parameters);
   }
 
   #resolveValues(context: ResolutionContextContract<T>, paramTypes: ParameterType[]) {

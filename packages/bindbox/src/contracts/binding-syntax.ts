@@ -1,7 +1,7 @@
 import type { ConstructorType, Type } from '../reflection';
 import type { ConditionCallback, ScopeCallback } from './binding';
 
-export type FactoryCallback<T> = (this: null, ...args: any[]) => T;
+export type FactoryCallback<T, R = any> = (this: R, ...args: any[]) => T;
 
 export interface BindingOnSyntaxContract<T> {
   onActivation(action: (instance: T) => void): BindingOnSyntaxContract<T>;
@@ -21,8 +21,9 @@ export interface BindingToSyntaxContract<TAbstract> {
   toValue<TImplementation extends TAbstract>(
     value: TImplementation,
   ): BindingWhenOrInOrOnSyntaxContract<TImplementation>;
-  toFactory<TImplementation extends TAbstract>(
-    factory: FactoryCallback<TImplementation | TAbstract>,
+  toFactory<TImplementation extends TAbstract, TContext>(
+    factory: FactoryCallback<TImplementation | TAbstract, TContext>,
+    thisArg?: TContext,
   ): BindingWhenOrInOrOnSyntaxContract<TImplementation | TAbstract>;
 }
 

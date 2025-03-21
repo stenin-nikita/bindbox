@@ -43,6 +43,18 @@ describe('Container', () => {
     expect(container.get(TValue)).toBe('value');
   });
 
+  it('should be resolved factory with context', () => {
+    const container = new Container();
+    const context = { value: 'value' };
+    const TValue = createTypeId<typeof context>('value');
+
+    container.bind(TValue).toFactory(function (this: typeof context) {
+      return this;
+    }, context);
+
+    expect(container.get(TValue)).toBe(context);
+  });
+
   it('should be resolve dependency of class', () => {
     const TFoo = createTypeId<Foo>('Foo');
     const TValue = createTypeId<string>('value');
