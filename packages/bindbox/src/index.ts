@@ -1,21 +1,24 @@
-export { createTypeId, optional, withMetadata, getParamTypes, ParamTypes } from './reflection';
-export type {
-  AbstractType,
-  CollectionType,
-  Metadata,
-  MetadataType,
-  TokenType,
-  Type,
-  TypeId,
-  ParameterType,
-  ParameterTypes,
-  ConstructorType,
-  ValueOfType,
-  TargetType,
-  TargetParameterTypes,
+export {
+  createTypeId,
+  optional,
+  withMetadata,
+  getParamTypes,
+  ParamTypes,
+  type AbstractType,
+  type CollectionType,
+  type Metadata,
+  type MetadataType,
+  type TokenType,
+  type Type,
+  type TypeId,
+  type ParameterType,
+  type ParameterTypes,
+  type ConstructorType,
+  type ValueOfType,
+  type TargetType,
+  type TargetParameterTypes,
 } from './reflection';
-export { Container } from './container';
-export type { ContainerOptions } from './container';
+export { Container, type ContainerOptions } from './container';
 export { Scope } from './scope';
 export { ActivationError } from './activation-error';
 export type {
@@ -23,4 +26,18 @@ export type {
   ScopeCallback,
   ConditionCallback,
   ContainerContract,
+  TargetContract,
+  Action,
+  BindingContract,
+  CacheContract,
+  ProviderContract,
+  ResolutionRequestContract,
+  ResolutionContextContract,
+  BindingRootSyntaxContract,
+  BindingInSyntaxContract,
+  BindingOnSyntaxContract,
+  BindingToSyntaxContract,
+  BindingWhenOrInOrOnSyntaxContract,
+  BindingWhenOrOnSyntaxContract,
+  BindingWhenSyntaxContract,
 } from './contracts';
