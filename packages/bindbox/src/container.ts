@@ -8,12 +8,14 @@ import type {
   BindingContract,
   BindingToSyntaxContract,
   ContainerContract,
+  FactoryCallback,
   ResolutionContextContract,
   ResolutionRequestContract,
   ScopeCallback,
 } from './contracts';
 import { ErrorFormatter } from './error-formatter';
-import type { TokenType, Type, ValueOfType } from './reflection';
+import { FactoryProvider } from './providers';
+import { type TokenType, type Type, type ValueOfType, createTypeId } from './reflection';
 import { ResolutionContext } from './resolution-context';
 import { ResolutionRequest } from './resolution-request';
 import { Scope } from './scope';
@@ -112,6 +114,20 @@ export class Container implements ContainerContract {
     child.#parent = this;
 
     return child;
+  }
+
+  invoke<TResult, TContext>(fn: FactoryCallback<TResult, TContext>, thisArg?: TContext) {
+    const type = createTypeId<TResult>(fn.name ?? 'Anonymus Function');
+    const provider = new FactoryProvider<TResult, TContext>(fn, thisArg);
+    const binding = new Binding<TResult>(this.#containerId, type, Scope.RESOLUTION);
+
+    binding.setProvider(provider);
+
+    const target = new Target(type);
+    const request = new ResolutionRequest(target);
+    const context = this.#createContext(request, binding);
+
+    return context.resolve();
   }
 
   #resolveSingle<T>(request: ResolutionRequestContract<T>): T {

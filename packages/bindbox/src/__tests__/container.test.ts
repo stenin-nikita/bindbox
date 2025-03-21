@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vitest } from 'vitest';
 
 import { Container, ParamTypes, createTypeId, optional } from '../index';
 
@@ -345,6 +345,50 @@ describe('Container', () => {
       const container = new Container();
 
       expect(container.isBound(Foo)).toBe(false);
+    });
+  });
+
+  describe('invoke', () => {
+    it('should invoke function with arguments', () => {
+      class Foo {}
+
+      const container = new Container();
+
+      container.bind(Foo).toSelf().inSingleton();
+
+      ParamTypes.define(isFoo, [Foo]);
+
+      function isFoo(arg: Foo) {
+        return arg instanceof Foo;
+      }
+
+      const mockFn = vitest.fn(isFoo);
+      const result = container.invoke(mockFn);
+
+      expect(result).toBe(true);
+      expect(mockFn).toHaveBeenCalledTimes(1);
+      expect(mockFn).toHaveBeenCalledWith(container.get(Foo));
+    });
+
+    it('should invoke function with context', () => {
+      const container = new Container();
+      const context = { a: 1 };
+      const TConst = createTypeId<number>();
+
+      container.bind(TConst).toValue(2);
+
+      ParamTypes.define(factory, [TConst]);
+
+      function factory(this: typeof context, b: number) {
+        return this.a + b;
+      }
+
+      const mockFn = vitest.fn(factory);
+      const result = container.invoke(mockFn, context);
+
+      expect(result).toBe(3);
+      expect(mockFn).toHaveBeenCalledTimes(1);
+      expect(mockFn).toHaveBeenCalledWith(container.get(TConst));
     });
   });
 });
