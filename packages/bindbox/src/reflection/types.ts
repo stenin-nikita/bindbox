@@ -28,7 +28,7 @@ export type Func<TArgs extends any[] = any[], TReturn = any, TContext = any> = (
 ) => TReturn;
 
 export type ParameterType<T = any> =
-  NonNullable<T> extends Array<infer P>
+  NonNullable<T> extends ArrayLike<infer P>
     ? Type<T> | MetadataType<T> | CollectionType<P>
     : Type<T> | MetadataType<T>;
 
