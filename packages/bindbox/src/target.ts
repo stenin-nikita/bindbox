@@ -24,7 +24,7 @@ export class Target<T = unknown> implements TargetContract<T> {
     const { target, metadata } = withMetadata(isArray ? type[0] : type, {});
 
     this.#isArray = isArray;
-    this.#type = target;
+    this.#type = target as AbstractType<T> | TypeId<T>;
     this.#metadata = metadata;
     this.#requestedBy = requestedBy;
   }

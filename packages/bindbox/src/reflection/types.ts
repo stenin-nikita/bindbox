@@ -18,7 +18,7 @@ export interface MetadataType<T = any> {
   metadata: Metadata;
 }
 
-export type CollectionType<T = any> = [type: Type<T> | MetadataType<T>];
+export type CollectionType<T = any> = [type: Type<T> | MetadataType<T | undefined>];
 
 export type TokenType<T = any> = Type<T> | CollectionType<T> | MetadataType<T>;
 
