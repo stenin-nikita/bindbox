@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { METADATA_KEY } from './constants';
 import type { AbstractType, Func, ParameterTypes } from './types';
 

@@ -35,11 +35,10 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage --coverage.include=src"
   },
-  "peerDependencies": {
+  "dependencies": {
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "reflect-metadata": "0.2.2",
     "typescript": "5.8.2",
     "unbuild": "3.5.0"
   }
